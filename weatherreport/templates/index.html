@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+   </head>
+  <body>
+    <h1 style="background-color:black,color:white">
+        Weather Report
+    </h1>
+    <center>
+     <form method="post" >
+        {% csrf_token %}
+       <input type="text" name="location" placeholder="Please Enter the location">
+
+     </form>
+   </center>
+   <div>
+   {% if country_code %}
+   <h1>{{location}}</h1>
+   <div>
+    <h4>Country code: {{country_code}}</h4>
+    <h4>longtitude: {{longtitude}}</h4>
+    <h4>latitude: {{latitude}}</h4>
+    <h4>temperature: {{temperature}}</h4>
+    <h4>humidity: {{humidity}}</h4>
+
+   </div>
+   {% endif %}
+  </div>
+</body>
+</html>
