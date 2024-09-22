@@ -14,7 +14,7 @@ def index(request):
         data = {
             "location":location,
             "country_code":str(json_data['sys']['country']),
-            "longtitude":str(json_data['coord']['lon']),
+            "longitude":str(json_data['coord']['lon']),
             "latitude":str(json_data['coord']['lat']),
             "temperature":float(json_data['main']['temp']),
             "humidity":float(json_data['main']['humidity']),

@@ -4,31 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
-   </head>
+    <title>Django-WeatherAPI</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('https://giffiles.alphacoders.com/948/94825.gif');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      .container {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6); /* Adds semi-transparent black background */
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        color: white;
+        margin: 0 0 20px;
+      }
+
+      form input[type="text"] {
+        padding: 10px;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 5px;
+        border: none;
+      }
+
+      h4 {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
   <body>
-    <h1 style="background-color:black,color:white">
-        Weather Report
-    </h1>
-    <center>
-     <form method="post" >
+    <div class="container">
+      <h1>Weather Report</h1>
+      <form method="post">
         {% csrf_token %}
-       <input type="text" name="location" placeholder="Please Enter the location">
+        <input type="text" name="location" placeholder="Please Enter the location">
+      </form>
 
-     </form>
-   </center>
-   <div>
-   {% if country_code %}
-   <h1>{{location}}</h1>
-   <div>
-    <h4>Country code: {{country_code}}</h4>
-    <h4>longtitude: {{longtitude}}</h4>
-    <h4>latitude: {{latitude}}</h4>
-    <h4>temperature: {{temperature}}</h4>
-    <h4>humidity: {{humidity}}</h4>
-
-   </div>
-   {% endif %}
-  </div>
-</body>
+      <div>
+        {% if country_code %}
+        <h1>{{ location }}</h1>
+        <div>
+          <h4>Country code: {{ country_code }}</h4>
+          <h4>Longitude: {{ longitude }}</h4>
+          <h4>Latitude: {{ latitude }}</h4>
+          <h4>Temperature: {{ temperature }}</h4>
+          <h4>Humidity: {{ humidity }}</h4>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
 </html>
