@@ -1,3 +1,5 @@
+![Screenshot (174)](https://github.com/user-attachments/assets/88305d8b-b90c-4121-a6fd-e332936f7cbe)
+
 # Django Weather App
 
 A simple Django-based web application that provides real-time weather information using the OpenWeather API.
