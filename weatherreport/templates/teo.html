@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+</head>
+<body>
+    <h1>Speech to Text</h1>
+    <button id="start-record-btn">Start Recording</button>
+    <p id="result"></p>
+
+    <script>
+        const startRecordBtn = document.getElementById("start-record-btn");
+        const resultDisplay = document.getElementById("result");
+
+        // Check for browser support
+        if ('SpeechRecognition ' in window) {
+            const recognition = new SpeechRecognition ();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = "en-US";
+
+            startRecordBtn.onclick = () => {
+                recognition.start();
+            };
+
+            recognition.onresult = (event) => {
+                const speechResult = event.results[0][0].transcript;
+                resultDisplay.textContent = speechResult;
+                sendToBackend(speechResult);
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Error occurred in recognition:", event.error);
+            };
+        } else {
+            alert("Your browser does not support Web Speech API.");
+        }
+
+        // Send captured text to backend
+        function sendToBackend(text) {
+            fetch('/process-speech/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Server response:", data);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    </script>
+</body>
+</html>
